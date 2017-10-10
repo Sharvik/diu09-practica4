@@ -34,32 +34,28 @@ public class MainWindow extends javax.swing.JFrame {
         picture2 = new javax.swing.JRadioButton();
         picture3 = new javax.swing.JRadioButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        smoothBox = new javax.swing.JCheckBox();
+        lusterBox = new javax.swing.JCheckBox();
         pictureTitle = new javax.swing.JLabel();
         filterTitle = new javax.swing.JLabel();
-        imagePanel1 = new ImagePanel();
+        imagePanel = new ImagePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Image Editor");
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLayeredPane1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jLayeredPane1PropertyChange(evt);
+            }
+        });
 
         radioButtonGroup.add(picture1);
         picture1.setSelected(true);
         picture1.setText("Nyan Cat");
-        picture1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                picture1MouseClicked(evt);
-            }
-        });
 
         radioButtonGroup.add(picture2);
         picture2.setText("Moon");
-        picture2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                picture2MouseClicked(evt);
-            }
-        });
 
         radioButtonGroup.add(picture3);
         picture3.setText("Dog");
@@ -78,7 +74,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(picture1)
                     .addComponent(picture3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(picture2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,15 +89,20 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLayeredPane2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jLayeredPane2PropertyChange(evt);
+            }
+        });
 
-        checkBoxGroup.add(jCheckBox1);
-        jCheckBox1.setText("jCheckBox1");
+        checkBoxGroup.add(smoothBox);
+        smoothBox.setText("Smooth");
 
-        checkBoxGroup.add(jCheckBox2);
-        jCheckBox2.setText("jCheckBox2");
+        checkBoxGroup.add(lusterBox);
+        lusterBox.setText("Luster");
 
-        jLayeredPane2.setLayer(jCheckBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(jCheckBox2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(smoothBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(lusterBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
@@ -110,33 +111,36 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addComponent(smoothBox)
+                    .addComponent(lusterBox))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1)
+                .addComponent(smoothBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox2)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(lusterBox)
+                .addGap(34, 34, 34))
         );
 
         pictureTitle.setText("Picture : ");
 
         filterTitle.setText("Image filter : ");
 
-        javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
-        imagePanel1.setLayout(imagePanel1Layout);
-        imagePanel1Layout.setHorizontalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
+        imagePanel.setToolTipText("");
+        imagePanel.setCheckBox(radioButtonGroup);
+
+        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
+        imagePanel.setLayout(imagePanelLayout);
+        imagePanelLayout.setHorizontalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        imagePanel1Layout.setVerticalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
+        imagePanelLayout.setVerticalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 232, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,47 +148,53 @@ public class MainWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pictureTitle))
-                        .addGap(104, 104, 104)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(filterTitle)
-                            .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pictureTitle))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filterTitle))
+                .addContainerGap(98, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(pictureTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(filterTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pictureTitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void picture1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_picture1MouseClicked
-        System.out.println(radioButtonGroup.getSelection().getMnemonic());
-    }//GEN-LAST:event_picture1MouseClicked
+    private void jLayeredPane1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLayeredPane1PropertyChange
+        imagePanel.setCheckBox(checkBoxGroup);
+        imagePanel.setRadioButton(radioButtonGroup);
+        imagePanel.paintComponent(imagePanel.getGraphics());
+    }//GEN-LAST:event_jLayeredPane1PropertyChange
 
-    private void picture2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_picture2MouseClicked
-        System.out.println(radioButtonGroup.getSelection().getMnemonic());
-    }//GEN-LAST:event_picture2MouseClicked
+    private void jLayeredPane2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLayeredPane2PropertyChange
+        imagePanel.setCheckBox(checkBoxGroup);
+        imagePanel.setRadioButton(radioButtonGroup);
+        imagePanel.paintComponent(imagePanel.getGraphics());
+    }//GEN-LAST:event_jLayeredPane2PropertyChange
 
     /**
      * @param args the command line arguments
@@ -224,15 +234,15 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup checkBoxGroup;
     private javax.swing.JLabel filterTitle;
-    private ImagePanel imagePanel1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private ImagePanel imagePanel;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JCheckBox lusterBox;
     private javax.swing.JRadioButton picture1;
     private javax.swing.JRadioButton picture2;
     private javax.swing.JRadioButton picture3;
     private javax.swing.JLabel pictureTitle;
     private javax.swing.ButtonGroup radioButtonGroup;
+    private javax.swing.JCheckBox smoothBox;
     // End of variables declaration//GEN-END:variables
 }
