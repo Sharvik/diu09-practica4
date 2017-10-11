@@ -37,11 +37,13 @@ public class MainWindow extends javax.swing.JFrame {
         picture2 = new javax.swing.JRadioButton();
         picture3 = new javax.swing.JRadioButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
-        smoothBox = new javax.swing.JCheckBox();
         lusterBox = new javax.swing.JCheckBox();
+        smoothBox = new javax.swing.JCheckBox();
+        normalBox = new javax.swing.JCheckBox();
         pictureTitle = new javax.swing.JLabel();
         filterTitle = new javax.swing.JLabel();
         imagePanel = new ImagePanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Editor");
@@ -88,7 +90,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(picture1)
                     .addComponent(picture3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(picture2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,14 +106,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        checkBoxGroup.add(smoothBox);
-        smoothBox.setText("Smooth");
-        smoothBox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                smoothBoxMouseClicked(evt);
-            }
-        });
-
         checkBoxGroup.add(lusterBox);
         lusterBox.setText("Luster");
         lusterBox.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,8 +114,25 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jLayeredPane2.setLayer(smoothBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        checkBoxGroup.add(smoothBox);
+        smoothBox.setText("Smooth");
+        smoothBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                smoothBoxMouseClicked(evt);
+            }
+        });
+
+        checkBoxGroup.add(normalBox);
+        normalBox.setText("No filter");
+        normalBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                normalBoxMouseClicked(evt);
+            }
+        });
+
         jLayeredPane2.setLayer(lusterBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(smoothBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(normalBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
@@ -131,21 +142,26 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(smoothBox)
-                    .addComponent(lusterBox))
-                .addContainerGap(83, Short.MAX_VALUE))
+                    .addComponent(lusterBox)
+                    .addComponent(normalBox))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(smoothBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(smoothBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lusterBox)
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(normalBox)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        pictureTitle.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         pictureTitle.setText("Picture : ");
 
+        filterTitle.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         filterTitle.setText("Image filter : ");
 
         imagePanel.setCheckBox(checkBoxGroup);
@@ -159,44 +175,49 @@ public class MainWindow extends javax.swing.JFrame {
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGap(0, 225, Short.MAX_VALUE)
         );
+
+        jLabel1.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
+        jLabel1.setText("David Medina & Geraldo Rodrígues 2017");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imagePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pictureTitle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filterTitle))
-                .addContainerGap(98, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(filterTitle)
+                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(filterTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(pictureTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1))
         );
 
         pack();
@@ -221,17 +242,23 @@ public class MainWindow extends javax.swing.JFrame {
         imagePanel.paintComponent(imagePanel.getGraphics());
     }//GEN-LAST:event_picture3MouseClicked
 
+    private void lusterBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lusterBoxMouseClicked
+        imagePanel.setCheckBox(checkBoxGroup);
+        imagePanel.setRadioButton(radioButtonGroup);
+        imagePanel.paintComponent(imagePanel.getGraphics());
+    }//GEN-LAST:event_lusterBoxMouseClicked
+
     private void smoothBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_smoothBoxMouseClicked
         imagePanel.setCheckBox(checkBoxGroup);
         imagePanel.setRadioButton(radioButtonGroup);
         imagePanel.paintComponent(imagePanel.getGraphics());
     }//GEN-LAST:event_smoothBoxMouseClicked
 
-    private void lusterBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lusterBoxMouseClicked
+    private void normalBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_normalBoxMouseClicked
         imagePanel.setCheckBox(checkBoxGroup);
         imagePanel.setRadioButton(radioButtonGroup);
         imagePanel.paintComponent(imagePanel.getGraphics());
-    }//GEN-LAST:event_lusterBoxMouseClicked
+    }//GEN-LAST:event_normalBoxMouseClicked
 
     /**
      * @param args the command line arguments
@@ -272,9 +299,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup checkBoxGroup;
     private javax.swing.JLabel filterTitle;
     private ImagePanel imagePanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JCheckBox lusterBox;
+    private javax.swing.JCheckBox normalBox;
     private javax.swing.JRadioButton picture1;
     private javax.swing.JRadioButton picture2;
     private javax.swing.JRadioButton picture3;

@@ -63,7 +63,6 @@ public class ImagePanel extends JPanel {
                 if(button.isSelected()) {
                     switch(button.getText()) {
                         case "Nyan Cat":
-                            System.out.println(button.getText());
                             paintImage("./misc/nyan-cat.jpg");
                             break;
                         case "Moon":
@@ -91,14 +90,18 @@ public class ImagePanel extends JPanel {
         for (int i = 0; i < checkBox.getButtonCount(); i++) {
             AbstractButton button = (AbstractButton)elements.nextElement();
             if(button.isSelected()) {
+                        System.out.println(button.getText());
                 switch(button.getText()){
                     case "Smooth":
+                        System.out.println(button.getText());
                         smoothImage();
                         break;
                     case "Luster":
+                        System.out.println(button.getText());
                         lusterImage();
                         break;
                     default:
+                        System.out.println(button.getText());
                         break;
                 }
             }
