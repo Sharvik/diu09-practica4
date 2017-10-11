@@ -1,3 +1,6 @@
+
+import java.awt.Graphics;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -44,21 +47,32 @@ public class MainWindow extends javax.swing.JFrame {
         setTitle("Image Editor");
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLayeredPane1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jLayeredPane1PropertyChange(evt);
-            }
-        });
+        jLayeredPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         radioButtonGroup.add(picture1);
         picture1.setSelected(true);
         picture1.setText("Nyan Cat");
+        picture1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                picture1MouseClicked(evt);
+            }
+        });
 
         radioButtonGroup.add(picture2);
         picture2.setText("Moon");
+        picture2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                picture2MouseClicked(evt);
+            }
+        });
 
         radioButtonGroup.add(picture3);
         picture3.setText("Dog");
+        picture3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                picture3MouseClicked(evt);
+            }
+        });
 
         jLayeredPane1.setLayer(picture1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(picture2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -89,17 +103,22 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLayeredPane2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jLayeredPane2PropertyChange(evt);
-            }
-        });
 
         checkBoxGroup.add(smoothBox);
         smoothBox.setText("Smooth");
+        smoothBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                smoothBoxMouseClicked(evt);
+            }
+        });
 
         checkBoxGroup.add(lusterBox);
         lusterBox.setText("Luster");
+        lusterBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lusterBoxMouseClicked(evt);
+            }
+        });
 
         jLayeredPane2.setLayer(smoothBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(lusterBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -122,15 +141,15 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(smoothBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lusterBox)
-                .addGap(34, 34, 34))
+                .addGap(26, 26, 26))
         );
 
         pictureTitle.setText("Picture : ");
 
         filterTitle.setText("Image filter : ");
 
-        imagePanel.setToolTipText("");
-        imagePanel.setCheckBox(radioButtonGroup);
+        imagePanel.setCheckBox(checkBoxGroup);
+        imagePanel.setRadioButton(radioButtonGroup);
 
         javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
         imagePanel.setLayout(imagePanelLayout);
@@ -140,7 +159,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
+            .addGap(0, 238, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,16 +185,16 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(pictureTitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(filterTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pictureTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -184,17 +203,35 @@ public class MainWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLayeredPane1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLayeredPane1PropertyChange
+    private void picture1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_picture1MouseClicked
         imagePanel.setCheckBox(checkBoxGroup);
         imagePanel.setRadioButton(radioButtonGroup);
         imagePanel.paintComponent(imagePanel.getGraphics());
-    }//GEN-LAST:event_jLayeredPane1PropertyChange
+    }//GEN-LAST:event_picture1MouseClicked
 
-    private void jLayeredPane2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLayeredPane2PropertyChange
+    private void picture2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_picture2MouseClicked
         imagePanel.setCheckBox(checkBoxGroup);
         imagePanel.setRadioButton(radioButtonGroup);
         imagePanel.paintComponent(imagePanel.getGraphics());
-    }//GEN-LAST:event_jLayeredPane2PropertyChange
+    }//GEN-LAST:event_picture2MouseClicked
+
+    private void picture3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_picture3MouseClicked
+        imagePanel.setCheckBox(checkBoxGroup);
+        imagePanel.setRadioButton(radioButtonGroup);
+        imagePanel.paintComponent(imagePanel.getGraphics());
+    }//GEN-LAST:event_picture3MouseClicked
+
+    private void smoothBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_smoothBoxMouseClicked
+        imagePanel.setCheckBox(checkBoxGroup);
+        imagePanel.setRadioButton(radioButtonGroup);
+        imagePanel.paintComponent(imagePanel.getGraphics());
+    }//GEN-LAST:event_smoothBoxMouseClicked
+
+    private void lusterBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lusterBoxMouseClicked
+        imagePanel.setCheckBox(checkBoxGroup);
+        imagePanel.setRadioButton(radioButtonGroup);
+        imagePanel.paintComponent(imagePanel.getGraphics());
+    }//GEN-LAST:event_lusterBoxMouseClicked
 
     /**
      * @param args the command line arguments

@@ -57,13 +57,13 @@ public class ImagePanel extends JPanel {
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
         try {
-            Enumeration elements = checkBox.getElements();
-            for (int i = 0; i < checkBox.getButtonCount(); i++) {
+            Enumeration elements = radioButton.getElements();
+            for (int i = 0; i < radioButton.getButtonCount(); i++) {
                 AbstractButton button = (AbstractButton)elements.nextElement();
                 if(button.isSelected()) {
-                    System.out.println(button.getText());
                     switch(button.getText()) {
                         case "Nyan Cat":
+                            System.out.println(button.getText());
                             paintImage("./misc/nyan-cat.jpg");
                             break;
                         case "Moon":
